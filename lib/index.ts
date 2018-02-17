@@ -4,17 +4,38 @@ import * as math from 'mathjs';
 
 export class VUtilities {
 
+  /*
+   * String methods
+  */
+  public static makeString(value?: any): string {
+    if (value == null) return '';
+    return '' + value;
+  }
+
+  public static coerceToString(value: any): string {
+    return _.some(['[object Undefined]', '[object Null]'], (t): boolean => {
+      return Object.prototype.toString.call(value) === t;
+    }) ? '' : value.toString();
+  }
+
+  public static reverse(value: string): string {
+    return value.split('').reverse().join('');
+  }
+
+  /*
+   * Type boolean methods
+  */
   public static isBlank(value?: any): boolean {
     if (value == null || value == undefined) {
       return true;
     } else if (typeof value === 'string' || typeof value === 'number') {
-      return s.isBlank(value.toString());
+      return (/^\s*$/).test(value.toString());
     } else if (VUtilities.isArray(value)){
       return value.length === 0;
     } else if (VUtilities.isObject(value)) {
       return Object.getOwnPropertyNames(value).length === 0;
     } else {
-      return s.isBlank(VUtilities.makeString(value));
+      return (/^\s*$/).test(VUtilities.makeString(value));
     }
   }
 
@@ -58,6 +79,9 @@ export class VUtilities {
     return VUtilities.isTrue(value) || VUtilities.isFalse(value);
   }
 
+  /*
+   * Array methods
+  */
   public static eachSlice(value: any[], size: number = 1, callback: Function): void {
     for (let i = 0, l = value.length; i < l; i += size) {
       callback(value.slice(i, i + size));
@@ -185,24 +209,11 @@ export class VUtilities {
     );
   }
 
-  public static makeString(value?: any): string {
-    if (value == null) return '';
-    return '' + value;
-  }
-
-  public static coerceToString(value: any): string {
-    return _.some(['[object Undefined]', '[object Null]'], (t): boolean => {
-      return Object.prototype.toString.call(value) === t;
-    }) ? '' : value.toString();
-  }
-
-  public static reverse(value: string): string {
-    return value.split('').reverse().join('');
-  }
-
-
+  /*
+   * Date methods
+  */
   public static enumDate(obj?: any) {
-    if (s.isBlank(obj)) return null;
+    if (VUtilities.isBlank(obj)) return null;
     if (typeof(obj) === 'number') {
       // let exp = ParseInt(obj.toExponential().split(/e[\+\-]/)[1], 10);
       // if (exp < 12) {

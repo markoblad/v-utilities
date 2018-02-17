@@ -33,9 +33,13 @@
     "istanbul": "^0.4.5",
     "mocha": "^4.1.0",
     "typescript": "^2.6.2",
-    "uglifyjs": "^2.4.11"
+    "uglifyjs": "^2.4.11",
+    "v-tools": "0.0.16"
   },
   "dependencies": {
+    "@types/lodash": "^4.14.104",
+    "@types/mathjs": "0.0.37",
+    "@types/moment": "^2.13.0",
     "lodash": "^4.17.5",
     "mathjs": "^3.20.2",
     "moment": "^2.20.1"

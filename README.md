@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/markoblad/v-utilities.svg?branch=master)](https://travis-ci.org/markoblad/v-utilities)[![Coverage Status](https://coveralls.io/repos/github/markoblad/v-utilities/badge.svg?branch=master)](https://coveralls.io/github/markoblad/v-utilities?branch=master)
+[![Build Status](https://travis-ci.org/markoblad/v-utilities.svg?branch=master)](https://travis-ci.org/markoblad/v-utilities) [![Coverage Status](https://coveralls.io/repos/github/markoblad/v-utilities/badge.svg?branch=master)](https://coveralls.io/github/markoblad/v-utilities?branch=master)
 
 # v-utilities
 A Node.js module with utility methods for valcu
