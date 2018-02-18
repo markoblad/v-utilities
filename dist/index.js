@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var _ = require("lodash");
 var moment = require("moment");
+var math = require("mathjs");
 var VUtilities = /** @class */ (function () {
     function VUtilities() {
     }
@@ -221,6 +222,12 @@ var VUtilities = /** @class */ (function () {
     };
     VUtilities.newUTCDateTimeStamp = function () {
         return VUtilities.enumDate(new Date());
+    };
+    /*
+     * Number methods
+    */
+    VUtilities.parseBigOrZero = function (value) {
+        return math.bignumber(VUtilities.isNumeric(value) ? value : 0.0);
     };
     return VUtilities;
 }());

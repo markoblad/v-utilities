@@ -236,6 +236,13 @@ export class VUtilities {
     return VUtilities.enumDate(new Date()) as number;
   }
 
+  /*
+   * Number methods
+  */
+  public static parseBigOrZero(value: number | string) {
+    return math.bignumber(VUtilities.isNumeric(value) ? value : 0.0);
+  }
+
 }
 
 export default VUtilities;

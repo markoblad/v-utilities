@@ -565,4 +565,26 @@ describe('VUtilities functions test', () => {
     expect(result.toString().length).to.equal(13);
   });
 
+  it('should return parseBigOrZero', () => {
+    var result = [
+      VTools.parseBigOrZero(null),
+      VTools.parseBigOrZero('0'),
+      VTools.parseBigOrZero('010'),
+      VTools.parseBigOrZero(100),
+      VTools.parseBigOrZero(100.001),
+      VTools.parseBigOrZero('00100.001'),
+      VTools.parseBigOrZero('00100.001'),
+    ];
+    var expectation = [
+      0.0,
+      0.0,
+      10.0,
+      100.0,
+      100.001,
+      100.001,
+      100.001,
+    ];
+    expect(result.join('')).to.equal(expectation.join(''));
+  });
+
 });

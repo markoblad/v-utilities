@@ -1,3 +1,4 @@
+/// <reference types="mathjs" />
 export declare class VUtilities {
     static makeString(value?: any): string;
     static coerceToString(value: any): string;
@@ -27,5 +28,6 @@ export declare class VUtilities {
     }): boolean;
     static enumDate(obj?: any): number | null;
     static newUTCDateTimeStamp(): number;
+    static parseBigOrZero(value: number | string): mathjs.BigNumber;
 }
 export default VUtilities;
