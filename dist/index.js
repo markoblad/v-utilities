@@ -48,6 +48,10 @@ var VUtilities = /** @class */ (function () {
     VUtilities.isArray = function (obj) {
         return Object.prototype.toString.call(obj) === '[object Array]';
     };
+    VUtilities.isFunction = function (obj) {
+        var getType = {};
+        return !!obj && getType.toString.call(obj) === '[object Function]';
+    };
     VUtilities.isDate = function (obj) {
         return Object.prototype.toString.call(obj) === '[object Date]';
     };
@@ -197,6 +201,17 @@ var VUtilities = /** @class */ (function () {
                 ((range1[0] !== range1[1]) && (((range1[0] < range2[1]) && (range1[1] > range2[0])) ||
                     ((range2[0] < range1[1]) && (range2[1] > range1[0])))) :
                 ((range1[0] <= range2[1]) && (range2[0] <= range1[1])));
+    };
+    VUtilities.filterHashes = function (hashes, selectorHash) {
+        if (hashes === void 0) { hashes = []; }
+        if (selectorHash === void 0) { selectorHash = {}; }
+        var returnObj = _.filter(hashes, function (hash) {
+            var allTrue = _.every(selectorHash, function (value, key) {
+                return (VUtilities.isFunction(value) ? value(hash[key]) : hash[key] === value);
+            });
+            return allTrue;
+        });
+        return returnObj;
     };
     /*
      * Date methods

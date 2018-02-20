@@ -186,6 +186,41 @@ describe('VUtilities functions test', () => {
     ];
     expect(result.join('')).to.equal(expectation.join(''));
   });
+  it('should return isFunction for various', () => {
+    var result = [
+      VUtilities.isFunction(null),
+      VUtilities.isFunction(),
+      VUtilities.isFunction(undefined),
+      VUtilities.isFunction(0),
+      VUtilities.isFunction('0'),
+      VUtilities.isFunction({}),
+      VUtilities.isFunction({0:null}),
+      VUtilities.isFunction([]),
+      VUtilities.isFunction([0]),
+      VUtilities.isFunction(true),
+      VUtilities.isFunction(false),
+      VUtilities.isFunction(() => true),
+      VUtilities.isFunction(() => { return true; }),
+      VUtilities.isFunction(function(someArg) { return someArg; }),
+    ];
+    var expectation = [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true,
+    ];
+    expect(result.join('')).to.equal(expectation.join(''));
+  });
 
   it('should return isDate for various', () => {
     var result = [
@@ -542,38 +577,68 @@ describe('VUtilities functions test', () => {
     ];
     expect(result.join('')).to.equal(expectation.join(''));
   });
+  it('should return filterHashes for various', () => {
+    var hashes = [
+      {
+        some_att: 1,
+      },
+      {
+        some_att: 2,
+      },
+      {
+        some_att: 3,
+      },
+    ];
+    var result = VUtilities.filterHashes(hashes, {some_att: 2});
+    var expectation = [
+      {
+        some_att: 2,
+      },
+    ];
+    expect(VTools.hashesToLines(result)).to.equal(VTools.hashesToLines(expectation));
+    var result = VUtilities.filterHashes(hashes, { some_att: (att) => { return att < 3; } });
+    var expectation = [
+      {
+        some_att: 1,
+      },
+      {
+        some_att: 2,
+      },
+    ];
+    expect(VTools.hashesToLines(result)).to.equal(VTools.hashesToLines(expectation));
+  });
 
   it('for enumDate should get unix UTC timestamp given a unix UTC timestamp', () => {
-    var result = VTools.enumDate(1439344269);
+    var result = VUtilities.enumDate(1439344269);
     expect(result).to.equal(1439344269);
   });
   it('for enumDate should get unix UTC timestamp given a date', () => {
-    var result = VTools.enumDate('August 11, 2015');
+    var result = VUtilities.enumDate('August 11, 2015');
     // 1439265600000
     expect(result).to.equal(1439251200000);
   });
   it('for enumDate should get unix UTC timestamp given a date', () => {
-    var result = VTools.enumDate('August 11, 2015 21:51:09');
+    var result = VUtilities.enumDate('August 11, 2015 21:51:09');
     expect(result).to.equal(1439329869000);
   });
   it('for enumDate should get NaN given a date wrapped in an array', () => {
-    var result = VTools.enumDate(['August 11, 2015 21:51:09']);
+    var result = VUtilities.enumDate(['August 11, 2015 21:51:09']);
     expect(result.toString()).to.equal(NaN.toString());
   });
   it('for newUTCDateTimeStamp should get unix UTC timestamp', () => {
-    var result = VTools.newUTCDateTimeStamp();
+    var result = VUtilities.newUTCDateTimeStamp();
     expect(result.toString().length).to.equal(13);
   });
 
   it('should return parseBigOrZero', () => {
     var result = [
-      VTools.parseBigOrZero(null),
-      VTools.parseBigOrZero('0'),
-      VTools.parseBigOrZero('010'),
-      VTools.parseBigOrZero(100),
-      VTools.parseBigOrZero(100.001),
-      VTools.parseBigOrZero('00100.001'),
-      VTools.parseBigOrZero('00100.001'),
+      VUtilities.parseBigOrZero(null),
+      VUtilities.parseBigOrZero('0'),
+      VUtilities.parseBigOrZero('010'),
+      VUtilities.parseBigOrZero(100),
+      VUtilities.parseBigOrZero(100.001),
+      VUtilities.parseBigOrZero('00100.001'),
+      VUtilities.parseBigOrZero('00100.001'),
     ];
     var expectation = [
       0.0,

@@ -6,6 +6,7 @@ export declare class VUtilities {
     static isBlank(value?: any): boolean;
     static isObject(obj?: any): boolean;
     static isArray(obj: any): boolean;
+    static isFunction(obj: any): boolean;
     static isDate(obj: any): boolean;
     static isString(value?: any): boolean;
     static isNumeric(value?: any): boolean;
@@ -26,6 +27,7 @@ export declare class VUtilities {
         strict?: boolean;
         sort?: boolean;
     }): boolean;
+    static filterHashes(hashes?: any[], selectorHash?: any): any[];
     static enumDate(obj?: any): number | null;
     static newUTCDateTimeStamp(): number;
     static parseBigOrZero(value: number | string): mathjs.BigNumber;

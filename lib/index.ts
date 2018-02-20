@@ -47,6 +47,11 @@ export class VUtilities {
     return Object.prototype.toString.call(obj) === '[object Array]';
   }
 
+  public static isFunction(obj: any): boolean {
+    const getType = {};
+    return !!obj && getType.toString.call(obj) === '[object Function]';
+  }
+
   public static isDate(obj: any): boolean {
     return Object.prototype.toString.call(obj) === '[object Date]';
   }
@@ -207,6 +212,19 @@ export class VUtilities {
       ) :
       ((range1[0] <= range2[1]) && (range2[0] <= range1[1]))
     );
+  }
+
+  public static filterHashes(hashes: any[] = [], selectorHash: any = {}): any[] {
+    const returnObj = _.filter(hashes, (hash: any) => {
+      const allTrue = _.every(selectorHash, (
+        value: Function | string | number | boolean | null,
+        key: string | number
+      ) => {
+        return (VUtilities.isFunction(value) ? (value as Function)(hash[key]) : hash[key] === value);
+      });
+      return allTrue;
+    });
+    return returnObj;
   }
 
   /*
