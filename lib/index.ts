@@ -257,8 +257,20 @@ export class VUtilities {
   /*
    * Number methods
   */
+  public static parseIntOrZero(value: number | string) {
+    return VUtilities.isNumeric(value) ? parseInt(value as string) : 0;
+  }
+
+  public static parseFloatOrZero(value: number | string) {
+    return VUtilities.isNumeric(value) ? parseFloat(value as string) : 0.0
+  }
+
   public static parseBigOrZero(value: number | string) {
     return math.bignumber(VUtilities.isNumeric(value) ? value : 0.0);
+  }
+
+  public static parseBigOrOne(value: number | string) {
+    return math.bignumber(VUtilities.isNumeric(value) ? value : 1.0);
   }
 
 }

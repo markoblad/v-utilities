@@ -630,6 +630,50 @@ describe('VUtilities functions test', () => {
     expect(result.toString().length).to.equal(13);
   });
 
+  it('should return parseIntOrZero', () => {
+    var result = [
+      VUtilities.parseIntOrZero(null),
+      VUtilities.parseIntOrZero('0'),
+      VUtilities.parseIntOrZero('010'),
+      VUtilities.parseIntOrZero(100),
+      VUtilities.parseIntOrZero(100.001),
+      VUtilities.parseIntOrZero('00100.001'),
+      VUtilities.parseIntOrZero('00100.001'),
+    ];
+    var expectation = [
+      0,
+      0,
+      10,
+      100,
+      100,
+      100,
+      100,
+    ];
+    expect(result.join('')).to.equal(expectation.join(''));
+  });
+
+  it('should return parseFloatOrZero', () => {
+    var result = [
+      VUtilities.parseFloatOrZero(null),
+      VUtilities.parseFloatOrZero('0'),
+      VUtilities.parseFloatOrZero('010'),
+      VUtilities.parseFloatOrZero(100),
+      VUtilities.parseFloatOrZero(100.001),
+      VUtilities.parseFloatOrZero('00100.001'),
+      VUtilities.parseFloatOrZero('00100.001'),
+    ];
+    var expectation = [
+      0.0,
+      0.0,
+      10.0,
+      100.0,
+      100.001,
+      100.001,
+      100.001,
+    ];
+    expect(result.join('')).to.equal(expectation.join(''));
+  });
+
   it('should return parseBigOrZero', () => {
     var result = [
       VUtilities.parseBigOrZero(null),
@@ -642,6 +686,28 @@ describe('VUtilities functions test', () => {
     ];
     var expectation = [
       0.0,
+      0.0,
+      10.0,
+      100.0,
+      100.001,
+      100.001,
+      100.001,
+    ];
+    expect(result.join('')).to.equal(expectation.join(''));
+  });
+
+  it('should return parseBigOrOne', () => {
+    var result = [
+      VUtilities.parseBigOrOne(null),
+      VUtilities.parseBigOrOne('0'),
+      VUtilities.parseBigOrOne('010'),
+      VUtilities.parseBigOrOne(100),
+      VUtilities.parseBigOrOne(100.001),
+      VUtilities.parseBigOrOne('00100.001'),
+      VUtilities.parseBigOrOne('00100.001'),
+    ];
+    var expectation = [
+      1.0,
       0.0,
       10.0,
       100.0,

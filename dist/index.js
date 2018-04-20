@@ -241,8 +241,17 @@ var VUtilities = /** @class */ (function () {
     /*
      * Number methods
     */
+    VUtilities.parseIntOrZero = function (value) {
+        return VUtilities.isNumeric(value) ? parseInt(value) : 0;
+    };
+    VUtilities.parseFloatOrZero = function (value) {
+        return VUtilities.isNumeric(value) ? parseFloat(value) : 0.0;
+    };
     VUtilities.parseBigOrZero = function (value) {
         return math.bignumber(VUtilities.isNumeric(value) ? value : 0.0);
+    };
+    VUtilities.parseBigOrOne = function (value) {
+        return math.bignumber(VUtilities.isNumeric(value) ? value : 1.0);
     };
     return VUtilities;
 }());

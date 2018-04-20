@@ -30,6 +30,9 @@ export declare class VUtilities {
     static filterHashes(hashes?: any[], selectorHash?: any): any[];
     static enumDate(obj?: any): number | null;
     static newUTCDateTimeStamp(): number;
+    static parseIntOrZero(value: number | string): number;
+    static parseFloatOrZero(value: number | string): number;
     static parseBigOrZero(value: number | string): mathjs.BigNumber;
+    static parseBigOrOne(value: number | string): mathjs.BigNumber;
 }
 export default VUtilities;
