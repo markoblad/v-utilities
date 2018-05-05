@@ -629,6 +629,10 @@ describe('VUtilities functions test', () => {
     var result = VUtilities.newUTCDateTimeStamp();
     expect(result.toString().length).to.equal(13);
   });
+  it('convertDateToStartOfDayStamp should get unix UTC start of day timestamp for a given a date', () => {
+    var result = VUtilities.convertDateToStartOfDayStamp('August 11, 2015 21:51:09');
+    expect(result).to.equal(1439251200000);
+  });
 
   it('should return parseIntOrZero', () => {
     var result = [

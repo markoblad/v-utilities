@@ -230,7 +230,7 @@ export class VUtilities {
   /*
    * Date methods
   */
-  public static enumDate(obj?: any) {
+  public static enumDate(obj?: any): number | null {
     if (VUtilities.isBlank(obj)) return null;
     if (typeof(obj) === 'number') {
       // let exp = ParseInt(obj.toExponential().split(/e[\+\-]/)[1], 10);
@@ -252,6 +252,10 @@ export class VUtilities {
 
   public static newUTCDateTimeStamp(): number {
     return VUtilities.enumDate(new Date()) as number;
+  }
+
+  public static  convertDateToStartOfDayStamp(date: any): number | null {
+    return VUtilities.enumDate(moment.utc(date).startOf('day'));
   }
 
   /*

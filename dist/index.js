@@ -238,6 +238,9 @@ var VUtilities = /** @class */ (function () {
     VUtilities.newUTCDateTimeStamp = function () {
         return VUtilities.enumDate(new Date());
     };
+    VUtilities.convertDateToStartOfDayStamp = function (date) {
+        return VUtilities.enumDate(moment.utc(date).startOf('day'));
+    };
     /*
      * Number methods
     */
