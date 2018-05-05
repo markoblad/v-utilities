@@ -241,6 +241,14 @@ var VUtilities = /** @class */ (function () {
     VUtilities.convertDateToStartOfDayStamp = function (date) {
         return VUtilities.enumDate(moment.utc(date).startOf('day'));
     };
+    VUtilities.periodsToSortedStamps = function (periods) {
+        if (periods === void 0) { periods = []; }
+        var sortedPeriodStamps = _.chain(periods || [])
+            .map(function (period) {
+            return VUtilities.enumDate(period);
+        }).compact().uniq().sortBy().value();
+        return sortedPeriodStamps;
+    };
     /*
      * Number methods
     */

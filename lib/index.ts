@@ -254,8 +254,16 @@ export class VUtilities {
     return VUtilities.enumDate(new Date()) as number;
   }
 
-  public static  convertDateToStartOfDayStamp(date: any): number | null {
+  public static convertDateToStartOfDayStamp(date: any): number | null {
     return VUtilities.enumDate(moment.utc(date).startOf('day'));
+  }
+
+  public static periodsToSortedStamps(periods: any[] = []): number[] {
+    const sortedPeriodStamps = _.chain(periods || [])
+    .map((period: any) => {
+      return VUtilities.enumDate(period);
+    }).compact().uniq().sortBy().value();
+    return sortedPeriodStamps;
   }
 
   /*

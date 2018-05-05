@@ -633,6 +633,21 @@ describe('VUtilities functions test', () => {
     var result = VUtilities.convertDateToStartOfDayStamp('August 11, 2015 21:51:09');
     expect(result).to.equal(1439251200000);
   });
+  it('should return periodsToSortedStamps for various', () => {
+    var result = VUtilities.periodsToSortedStamps([
+      'August 11, 2015 21:51:09',
+      'August 11, 2015 21:51:09',
+      null,
+      'August 11, 2015 21:51:10',
+      1439344269
+    ]);
+    var expectation = [
+      1439344269,
+      1439329869000,
+      1439329870000,
+    ];
+    expect(result.join('')).to.equal(expectation.join(''));
+  });
 
   it('should return parseIntOrZero', () => {
     var result = [
