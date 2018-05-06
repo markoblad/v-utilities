@@ -266,6 +266,11 @@ export class VUtilities {
     return sortedPeriodStamps;
   }
 
+  public static isLeapYear(year: number | string) {
+    year = parseInt(year as string, 10);
+    return ((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0);
+  }
+
   /*
    * Number methods
   */

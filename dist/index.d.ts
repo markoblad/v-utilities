@@ -32,6 +32,7 @@ export declare class VUtilities {
     static newUTCDateTimeStamp(): number;
     static convertDateToStartOfDayStamp(date: any): number | null;
     static periodsToSortedStamps(periods?: any[]): number[];
+    static isLeapYear(year: number | string): boolean;
     static parseIntOrZero(value: number | string): number;
     static parseFloatOrZero(value: number | string): number;
     static parseBigOrZero(value: number | string): mathjs.BigNumber;

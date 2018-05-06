@@ -249,6 +249,10 @@ var VUtilities = /** @class */ (function () {
         }).compact().uniq().sortBy().value();
         return sortedPeriodStamps;
     };
+    VUtilities.isLeapYear = function (year) {
+        year = parseInt(year, 10);
+        return ((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0);
+    };
     /*
      * Number methods
     */

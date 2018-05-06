@@ -648,6 +648,39 @@ describe('VUtilities functions test', () => {
     ];
     expect(result.join('')).to.equal(expectation.join(''));
   });
+  it('should return isLeapYear for various', () => {
+    var result = [
+      VUtilities.isLeapYear(2016),
+      VUtilities.isLeapYear(2020),
+      VUtilities.isLeapYear(2024),
+      VUtilities.isLeapYear(2032),
+      VUtilities.isLeapYear(2000),
+      VUtilities.isLeapYear(0),
+      VUtilities.isLeapYear(-400),
+      VUtilities.isLeapYear(-300),
+      VUtilities.isLeapYear(2017),
+      VUtilities.isLeapYear(2018),
+      VUtilities.isLeapYear(1700),
+      VUtilities.isLeapYear(1800),
+      VUtilities.isLeapYear(1900),
+    ];
+    var expectation = [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+    ];
+    expect(result.join('')).to.equal(expectation.join(''));
+  });
 
   it('should return parseIntOrZero', () => {
     var result = [
