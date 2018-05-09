@@ -1,5 +1,6 @@
 'use strict';
 var expect = require('chai').expect;
+var mathjs = require('mathjs');
 var VTools = require('v-tools').VTools;
 var index = require('../dist/index.js');
 var VUtilities = index.VUtilities;
@@ -316,6 +317,69 @@ describe('VUtilities functions test', () => {
       false,
       false,
       false,
+    ];
+    expect(result.join('')).to.equal(expectation.join(''));
+  });
+
+  it('should return isBigNumber for various', () => {
+    var result = [
+      VUtilities.isBigNumber(null),
+      VUtilities.isBigNumber(),
+      VUtilities.isBigNumber(undefined),
+      VUtilities.isBigNumber(0),
+      VUtilities.isBigNumber('0'),
+      VUtilities.isBigNumber({}),
+      VUtilities.isBigNumber({0:null}),
+      VUtilities.isBigNumber([]),
+      VUtilities.isBigNumber([0]),
+      VUtilities.isBigNumber(true),
+      VUtilities.isBigNumber(false),
+      VUtilities.isBigNumber(NaN),
+      VUtilities.isBigNumber(Infinity),
+      VUtilities.isBigNumber(mathjs.bignumber(null)),
+      // VUtilities.isBigNumber(mathjs.bignumber( )),
+      // VUtilities.isBigNumber(mathjs.bignumber(undefined)),
+      VUtilities.isBigNumber(mathjs.bignumber(0)),
+      VUtilities.isBigNumber(mathjs.bignumber('0')),
+      // VUtilities.isBigNumber(mathjs.bignumber({})),
+      // VUtilities.isBigNumber(mathjs.bignumber({0:null})),
+      VUtilities.isBigNumber(mathjs.bignumber([])),
+      VUtilities.isBigNumber(mathjs.bignumber([0])),
+      VUtilities.isBigNumber(mathjs.bignumber(true)),
+      VUtilities.isBigNumber(mathjs.bignumber(false)),
+      VUtilities.isBigNumber(mathjs.bignumber(NaN)),
+      VUtilities.isBigNumber(mathjs.bignumber(Infinity)),
+    ];
+    // console.log(mathjs.bignumber(true).toString());
+    // console.log(mathjs.bignumber(false).toString());
+    var expectation = [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+
+      true,
+      // false,
+      // false,
+      true,
+      true,
+      // false,
+      // false,
+      false,
+      false,
+      true,
+      true,
+      true,
+      true,
     ];
     expect(result.join('')).to.equal(expectation.join(''));
   });

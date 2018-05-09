@@ -10,6 +10,7 @@ export declare class VUtilities {
     static isDate(obj: any): boolean;
     static isString(value?: any): boolean;
     static isNumeric(value?: any): boolean;
+    static isBigNumber(value?: any): boolean;
     static isTrue(value?: any): boolean;
     static isFalse(value?: any): boolean;
     static isTrueOrFalse(value?: any): boolean;

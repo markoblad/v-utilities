@@ -64,6 +64,10 @@ export class VUtilities {
     return !VUtilities.isObject(value) && !VUtilities.isArray(value) && !isNaN(parseFloat(value)) && isFinite(value);
   }
 
+  public static isBigNumber(value?: any): boolean {
+    return math.typeof(value) === 'BigNumber';
+  }
+
   public static isTrue(value?: any): boolean {
     if (value === undefined || value === null) {
       return false;
@@ -283,11 +287,13 @@ export class VUtilities {
   }
 
   public static parseBigOrZero(value: number | string) {
-    return math.bignumber(VUtilities.isNumeric(value) ? value : 0.0);
+    value = value || 0.0;
+    return VUtilities.isBigNumber(value) ? value : math.bignumber(VUtilities.isNumeric(value) ? value : 0.0);
   }
 
   public static parseBigOrOne(value: number | string) {
-    return math.bignumber(VUtilities.isNumeric(value) ? value : 1.0);
+    value = value === 0.0 ? value : (value || '');
+    return VUtilities.isBigNumber(value) ? value : math.bignumber(VUtilities.isNumeric(value) ? value : 1.0);
   }
 
 }

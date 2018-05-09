@@ -61,6 +61,9 @@ var VUtilities = /** @class */ (function () {
     VUtilities.isNumeric = function (value) {
         return !VUtilities.isObject(value) && !VUtilities.isArray(value) && !isNaN(parseFloat(value)) && isFinite(value);
     };
+    VUtilities.isBigNumber = function (value) {
+        return math.typeof(value) === 'BigNumber';
+    };
     VUtilities.isTrue = function (value) {
         if (value === undefined || value === null) {
             return false;
@@ -263,10 +266,12 @@ var VUtilities = /** @class */ (function () {
         return VUtilities.isNumeric(value) ? parseFloat(value) : 0.0;
     };
     VUtilities.parseBigOrZero = function (value) {
-        return math.bignumber(VUtilities.isNumeric(value) ? value : 0.0);
+        value = value || 0.0;
+        return VUtilities.isBigNumber(value) ? value : math.bignumber(VUtilities.isNumeric(value) ? value : 0.0);
     };
     VUtilities.parseBigOrOne = function (value) {
-        return math.bignumber(VUtilities.isNumeric(value) ? value : 1.0);
+        value = value === 0.0 ? value : (value || '');
+        return VUtilities.isBigNumber(value) ? value : math.bignumber(VUtilities.isNumeric(value) ? value : 1.0);
     };
     return VUtilities;
 }());
