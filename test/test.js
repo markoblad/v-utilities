@@ -547,6 +547,26 @@ describe('VUtilities functions test', () => {
     expect(result.join('')).to.equal(expectation.join(''));
   });
 
+  it('should return bigArraySum for various', () => {
+    var result = [
+      VUtilities.bigArraySum(null),
+      mathjs.typeof(VUtilities.bigArraySum(null)),
+      VUtilities.bigArraySum([null, undefined, 0, '0', 1, '1', {}, {0:null}, [], [1], true, false, '3.0001%', '$1', 0.1, '0.01']),
+      VUtilities.bigArraySum([null, undefined, 0, '0', 1, '1', {}, {0:null}, [], [1], true, false, NaN, '$1', 0.1, '0.01']),
+      VUtilities.bigArraySum([null, undefined, 0, '0', 1, '1', {}, {0:null}, [], [1], true, false, NaN, Infinity, 0.1, '0.1']),
+      mathjs.typeof(VUtilities.bigArraySum([null, undefined, 0, '0', 1, '1', {}, {0:null}, [], [1], true, false, NaN, Infinity, 0.1, '0.1'])),
+    ];
+    var expectation = [
+      0,
+      'BigNumber',
+      2.11,
+      2.11,
+      Infinity,
+      'BigNumber',
+    ];
+    expect(result.join('')).to.equal(expectation.join(''));
+  });
+
   it('should return arrayItemCounts for null', () => {
     var result = VUtilities.arrayItemCounts(null);
     expect(VTools.hashesToLines([null])).to.equal(VTools.hashesToLines([result]));

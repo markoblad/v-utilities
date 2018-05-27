@@ -16,6 +16,7 @@ export declare class VUtilities {
     static isTrueOrFalse(value?: any): boolean;
     static eachSlice(value: any[], size: number | undefined, callback: Function): void;
     static arraySum(value?: any): number;
+    static bigArraySum(value?: any): mathjs.BigNumber;
     static arrayItemCounts(array: any[] | null): any;
     static arraySort(array?: any[] | null): any;
     static arrayClosest(num: number, arr?: number[]): number | null;

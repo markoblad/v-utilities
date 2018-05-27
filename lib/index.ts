@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
 import * as moment from 'moment';
-import * as math from 'mathjs';
+import * as mathjs from 'mathjs';
 
 export class VUtilities {
 
@@ -65,7 +65,7 @@ export class VUtilities {
   }
 
   public static isBigNumber(value?: any): boolean {
-    return math.typeof(value) === 'BigNumber';
+    return mathjs.typeof(value) === 'BigNumber';
   }
 
   public static isTrue(value?: any): boolean {
@@ -99,7 +99,7 @@ export class VUtilities {
 
   public static arraySum(value?: any): number {
     if (value && VUtilities.isArray(value)) {
-      return _.reduce(value, function(memo: number, num: any) {
+      return _.reduce(value, (memo: number, num: any) => {
         let numType = typeof num;
         return (
           (
@@ -112,6 +112,24 @@ export class VUtilities {
         );
       }, 0);
     } else { return 0; }
+  }
+
+  public static bigArraySum(value?: any): mathjs.BigNumber {
+    if (value && VUtilities.isArray(value)) {
+      return _.reduce(value, (memo: number | mathjs.BigNumber, num: any) => {
+        let numType = mathjs.typeof(num);
+        console.log('VUtilities.parseBigOrZero(num as string): ', VUtilities.parseBigOrZero(num as string).toString());
+        return (
+          (
+            num &&
+            (numType === 'BigNumber' || numType === 'string' || numType === 'number') &&
+            (isFinite(num) || num.toString() === 'Infinity')
+          ) ?
+            mathjs.add(memo, numType === 'string' ? VUtilities.parseBigOrZero(num as string) : num) :
+            memo
+        );
+      }, mathjs.bignumber(0));
+    } else { return mathjs.bignumber(0); }
   }
 
   public static arrayItemCounts(array: any[] | null): any {
@@ -288,12 +306,12 @@ export class VUtilities {
 
   public static parseBigOrZero(value: number | string) {
     value = value || 0.0;
-    return VUtilities.isBigNumber(value) ? value : math.bignumber(VUtilities.isNumeric(value) ? value : 0.0);
+    return VUtilities.isBigNumber(value) ? value : mathjs.bignumber(VUtilities.isNumeric(value) ? value : 0.0);
   }
 
   public static parseBigOrOne(value: number | string) {
     value = value === 0.0 ? value : (value || '');
-    return VUtilities.isBigNumber(value) ? value : math.bignumber(VUtilities.isNumeric(value) ? value : 1.0);
+    return VUtilities.isBigNumber(value) ? value : mathjs.bignumber(VUtilities.isNumeric(value) ? value : 1.0);
   }
 
 }

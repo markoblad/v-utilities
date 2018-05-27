@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var _ = require("lodash");
 var moment = require("moment");
-var math = require("mathjs");
+var mathjs = require("mathjs");
 var VUtilities = /** @class */ (function () {
     function VUtilities() {
     }
@@ -62,7 +62,7 @@ var VUtilities = /** @class */ (function () {
         return !VUtilities.isObject(value) && !VUtilities.isArray(value) && !isNaN(parseFloat(value)) && isFinite(value);
     };
     VUtilities.isBigNumber = function (value) {
-        return math.typeof(value) === 'BigNumber';
+        return mathjs.typeof(value) === 'BigNumber';
     };
     VUtilities.isTrue = function (value) {
         if (value === undefined || value === null) {
@@ -103,6 +103,22 @@ var VUtilities = /** @class */ (function () {
         }
         else {
             return 0;
+        }
+    };
+    VUtilities.bigArraySum = function (value) {
+        if (value && VUtilities.isArray(value)) {
+            return _.reduce(value, function (memo, num) {
+                var numType = mathjs.typeof(num);
+                console.log('VUtilities.parseBigOrZero(num as string): ', VUtilities.parseBigOrZero(num).toString());
+                return ((num &&
+                    (numType === 'BigNumber' || numType === 'string' || numType === 'number') &&
+                    (isFinite(num) || num.toString() === 'Infinity')) ?
+                    mathjs.add(memo, numType === 'string' ? VUtilities.parseBigOrZero(num) : num) :
+                    memo);
+            }, mathjs.bignumber(0));
+        }
+        else {
+            return mathjs.bignumber(0);
         }
     };
     VUtilities.arrayItemCounts = function (array) {
@@ -267,11 +283,11 @@ var VUtilities = /** @class */ (function () {
     };
     VUtilities.parseBigOrZero = function (value) {
         value = value || 0.0;
-        return VUtilities.isBigNumber(value) ? value : math.bignumber(VUtilities.isNumeric(value) ? value : 0.0);
+        return VUtilities.isBigNumber(value) ? value : mathjs.bignumber(VUtilities.isNumeric(value) ? value : 0.0);
     };
     VUtilities.parseBigOrOne = function (value) {
         value = value === 0.0 ? value : (value || '');
-        return VUtilities.isBigNumber(value) ? value : math.bignumber(VUtilities.isNumeric(value) ? value : 1.0);
+        return VUtilities.isBigNumber(value) ? value : mathjs.bignumber(VUtilities.isNumeric(value) ? value : 1.0);
     };
     return VUtilities;
 }());
