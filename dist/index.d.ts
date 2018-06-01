@@ -35,9 +35,9 @@ export declare class VUtilities {
     static convertDateToStartOfDayStamp(date: any): number | null;
     static periodsToSortedStamps(periods?: any[]): number[];
     static isLeapYear(year: number | string): boolean;
-    static parseIntOrZero(value?: number | string | null): number;
-    static parseFloatOrZero(value?: number | string | null): number;
-    static parseBigOrZero(value?: number | string | null): mathjs.BigNumber;
-    static parseBigOrOne(value?: number | string | null): mathjs.BigNumber;
+    static parseIntOrZero(value?: number | string | mathjs.BigNumber | null): number;
+    static parseFloatOrZero(value?: number | string | mathjs.BigNumber | null): number;
+    static parseBigOrZero(value?: number | mathjs.BigNumber | string | null): mathjs.BigNumber;
+    static parseBigOrOne(value?: number | mathjs.BigNumber | string | null): mathjs.BigNumber;
 }
 export default VUtilities;

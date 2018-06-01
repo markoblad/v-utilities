@@ -276,18 +276,26 @@ var VUtilities = /** @class */ (function () {
      * Number methods
     */
     VUtilities.parseIntOrZero = function (value) {
+        value = value || 0.0;
+        value = VUtilities.isBigNumber(value) ? mathjs.number(value) : value;
         return VUtilities.isNumeric(value) ? parseInt(value) : 0;
     };
     VUtilities.parseFloatOrZero = function (value) {
+        value = value || 0.0;
+        value = VUtilities.isBigNumber(value) ? mathjs.number(value) : value;
         return VUtilities.isNumeric(value) ? parseFloat(value) : 0.0;
     };
     VUtilities.parseBigOrZero = function (value) {
         value = value || 0.0;
-        return VUtilities.isBigNumber(value) ? value : mathjs.bignumber(VUtilities.isNumeric(value) ? value : 0.0);
+        return VUtilities.isBigNumber(value) ?
+            value :
+            mathjs.bignumber((VUtilities.isNumeric(value) ? value : 0.0));
     };
     VUtilities.parseBigOrOne = function (value) {
         value = value === 0.0 ? value : (value || '');
-        return VUtilities.isBigNumber(value) ? value : mathjs.bignumber(VUtilities.isNumeric(value) ? value : 1.0);
+        return VUtilities.isBigNumber(value) ?
+            value :
+            mathjs.bignumber((VUtilities.isNumeric(value) ? value : 1.0));
     };
     return VUtilities;
 }());
