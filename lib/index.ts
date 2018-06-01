@@ -296,20 +296,20 @@ export class VUtilities {
   /*
    * Number methods
   */
-  public static parseIntOrZero(value: number | string) {
+  public static parseIntOrZero(value?: number | string | null) {
     return VUtilities.isNumeric(value) ? parseInt(value as string) : 0;
   }
 
-  public static parseFloatOrZero(value: number | string) {
-    return VUtilities.isNumeric(value) ? parseFloat(value as string) : 0.0
+  public static parseFloatOrZero(value?: number | string | null) {
+    return VUtilities.isNumeric(value) ? parseFloat(value as string) : 0.0;
   }
 
-  public static parseBigOrZero(value: number | string) {
+  public static parseBigOrZero(value?: number | string | null) {
     value = value || 0.0;
     return VUtilities.isBigNumber(value) ? value : mathjs.bignumber(VUtilities.isNumeric(value) ? value : 0.0);
   }
 
-  public static parseBigOrOne(value: number | string) {
+  public static parseBigOrOne(value?: number | string | null) {
     value = value === 0.0 ? value : (value || '');
     return VUtilities.isBigNumber(value) ? value : mathjs.bignumber(VUtilities.isNumeric(value) ? value : 1.0);
   }

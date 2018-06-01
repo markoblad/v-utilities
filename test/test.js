@@ -768,6 +768,8 @@ describe('VUtilities functions test', () => {
 
   it('should return parseIntOrZero', () => {
     var result = [
+      VUtilities.parseIntOrZero(),
+      VUtilities.parseIntOrZero(undefined),
       VUtilities.parseIntOrZero(null),
       VUtilities.parseIntOrZero('0'),
       VUtilities.parseIntOrZero('010'),
@@ -777,6 +779,8 @@ describe('VUtilities functions test', () => {
       VUtilities.parseIntOrZero('00100.001'),
     ];
     var expectation = [
+      0,
+      0,
       0,
       0,
       10,
@@ -790,6 +794,8 @@ describe('VUtilities functions test', () => {
 
   it('should return parseFloatOrZero', () => {
     var result = [
+      VUtilities.parseFloatOrZero(),
+      VUtilities.parseFloatOrZero(undefined),
       VUtilities.parseFloatOrZero(null),
       VUtilities.parseFloatOrZero('0'),
       VUtilities.parseFloatOrZero('010'),
@@ -799,6 +805,8 @@ describe('VUtilities functions test', () => {
       VUtilities.parseFloatOrZero('00100.001'),
     ];
     var expectation = [
+      0.0,
+      0.0,
       0.0,
       0.0,
       10.0,
@@ -812,6 +820,8 @@ describe('VUtilities functions test', () => {
 
   it('should return parseBigOrZero', () => {
     var result = [
+      VUtilities.parseBigOrZero(),
+      VUtilities.parseBigOrZero(undefined),
       VUtilities.parseBigOrZero(null),
       VUtilities.parseBigOrZero('0'),
       VUtilities.parseBigOrZero('010'),
@@ -821,6 +831,8 @@ describe('VUtilities functions test', () => {
       VUtilities.parseBigOrZero('00100.001'),
     ];
     var expectation = [
+      0.0,
+      0.0,
       0.0,
       0.0,
       10.0,
@@ -834,6 +846,8 @@ describe('VUtilities functions test', () => {
 
   it('should return parseBigOrOne', () => {
     var result = [
+      VUtilities.parseBigOrOne(),
+      VUtilities.parseBigOrOne(undefined),
       VUtilities.parseBigOrOne(null),
       VUtilities.parseBigOrOne('0'),
       VUtilities.parseBigOrOne('010'),
@@ -843,6 +857,8 @@ describe('VUtilities functions test', () => {
       VUtilities.parseBigOrOne('00100.001'),
     ];
     var expectation = [
+      1.0,
+      1.0,
       1.0,
       0.0,
       10.0,
