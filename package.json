@@ -1,6 +1,6 @@
 {
   "name": "v-utilities",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "utility methods for valcu",
   "main": "dist/index.min.js",
   "types": "dist/index.d.ts",
