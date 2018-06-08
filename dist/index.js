@@ -109,7 +109,6 @@ var VUtilities = /** @class */ (function () {
         if (value && VUtilities.isArray(value)) {
             return _.reduce(value, function (memo, num) {
                 var numType = mathjs.typeof(num);
-                console.log('VUtilities.parseBigOrZero(num as string): ', VUtilities.parseBigOrZero(num).toString());
                 return ((num &&
                     (numType === 'BigNumber' || numType === 'string' || numType === 'number') &&
                     (isFinite(num) || num.toString() === 'Infinity')) ?

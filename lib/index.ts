@@ -118,7 +118,6 @@ export class VUtilities {
     if (value && VUtilities.isArray(value)) {
       return _.reduce(value, (memo: number | mathjs.BigNumber, num: any) => {
         let numType = mathjs.typeof(num);
-        console.log('VUtilities.parseBigOrZero(num as string): ', VUtilities.parseBigOrZero(num as string).toString());
         return (
           (
             num &&
