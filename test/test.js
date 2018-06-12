@@ -717,6 +717,17 @@ describe('VUtilities functions test', () => {
     var result = VUtilities.convertDateToStartOfDayStamp('August 11, 2015 21:51:09');
     expect(result).to.equal(1439251200000);
   });
+  it('for enumDate should get unix UTC timestamp in milliseconds given a numeric string even if it appears to be in seconds', () => {
+    var result = [
+      VUtilities.enumDate('1439329869000'),
+      VUtilities.enumDate('1439329869'),
+    ];
+    var exp = [
+      1439329869000,
+      1439329869,
+    ];
+    expect(result.toString()).to.equal(exp.toString());
+  });
   it('should return periodsToSortedStamps for various', () => {
     var result = VUtilities.periodsToSortedStamps([
       'August 11, 2015 21:51:09',

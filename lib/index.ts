@@ -251,6 +251,7 @@ export class VUtilities {
   /*
    * Date methods
   */
+  // returns timestamp in milliseconds
   public static enumDate(obj?: any): number | null {
     if (VUtilities.isBlank(obj)) return null;
     if (typeof(obj) === 'number') {
@@ -265,7 +266,7 @@ export class VUtilities {
       // let dateObj = Date.parse(obj);
       // let offset = new Date().getTimezoneOffset()*60000;
       // return new Date(dateObj).getTime() + offset
-      return parseInt(moment.utc(obj).format('x'), 10);
+      return parseInt(moment.utc(VUtilities.isNumeric(obj) ? parseFloat(obj) : obj).format('x'), 10);
     }
     // return Date.parse(obj)
     return parseInt(moment.utc(obj).format('x'), 10);

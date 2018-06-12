@@ -234,6 +234,7 @@ var VUtilities = /** @class */ (function () {
     /*
      * Date methods
     */
+    // returns timestamp in milliseconds
     VUtilities.enumDate = function (obj) {
         if (VUtilities.isBlank(obj))
             return null;
@@ -248,7 +249,7 @@ var VUtilities = /** @class */ (function () {
             // let dateObj = Date.parse(obj);
             // let offset = new Date().getTimezoneOffset()*60000;
             // return new Date(dateObj).getTime() + offset
-            return parseInt(moment.utc(obj).format('x'), 10);
+            return parseInt(moment.utc(VUtilities.isNumeric(obj) ? parseFloat(obj) : obj).format('x'), 10);
         }
         // return Date.parse(obj)
         return parseInt(moment.utc(obj).format('x'), 10);
