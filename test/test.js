@@ -661,6 +661,30 @@ describe('VUtilities functions test', () => {
     ];
     expect(result.join('')).to.equal(expectation.join(''));
   });
+  it('should return rangeToArray for various', () => {
+    var result = [
+      VUtilities.rangeToArray(0, 1),
+      // VUtilities.rangeToArray(-1, 1),
+      // VUtilities.rangeToArray(5, 1),
+      VUtilities.rangeToArray(0, 0),
+      // VUtilities.rangeToArray(1, -1),
+      // VUtilities.rangeToArray(-1, -1),
+      VUtilities.rangeToArray(3, 10),
+      VUtilities.rangeToArray(1, 1),
+    ];
+    var expectation = [
+      [0, 1],
+      // [-1, 0, 1],
+      // [5, 4, 3, 2, 1],
+      [0],
+      // [1, 0, -1],
+      // [-1],
+      [3, 4, 5, 6, 7, 8, 9, 10],
+      [1],
+    ];
+    expect(result.join('')).to.equal(expectation.join(''));
+  });
+  
   it('should return filterHashes for various', () => {
     var hashes = [
       {

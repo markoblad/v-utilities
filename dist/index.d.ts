@@ -29,6 +29,7 @@ export declare class VUtilities {
         strict?: boolean;
         sort?: boolean;
     }): boolean;
+    static rangeToArray(startIndex: number, endIndex: number): number[];
     static filterHashes(hashes?: any[], selectorHash?: any): any[];
     static enumDate(obj?: any): number | null;
     static newUTCDateTimeStamp(): number;

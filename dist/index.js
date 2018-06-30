@@ -220,6 +220,10 @@ var VUtilities = /** @class */ (function () {
                     ((range2[0] < range1[1]) && (range2[1] > range1[0])))) :
                 ((range1[0] <= range2[1]) && (range2[0] <= range1[1])));
     };
+    VUtilities.rangeToArray = function (startIndex, endIndex) {
+        // TODO 20180629 - add support for negative numbers and reverse ranges
+        return Array.from(Array(endIndex + 1).keys()).slice(startIndex, endIndex + 1);
+    };
     VUtilities.filterHashes = function (hashes, selectorHash) {
         if (hashes === void 0) { hashes = []; }
         if (selectorHash === void 0) { selectorHash = {}; }

@@ -235,6 +235,11 @@ export class VUtilities {
     );
   }
 
+  public static rangeToArray(startIndex: number, endIndex: number): number[] {
+    // TODO 20180629 - add support for negative numbers and reverse ranges
+    return Array.from(Array(endIndex + 1).keys()).slice(startIndex, endIndex + 1);
+  }
+
   public static filterHashes(hashes: any[] = [], selectorHash: any = {}): any[] {
     const returnObj = _.filter(hashes, (hash: any) => {
       const allTrue = _.every(selectorHash, (
