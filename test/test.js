@@ -753,6 +753,29 @@ describe('VUtilities functions test', () => {
     ];
     expect(result.toString()).to.equal(exp.toString());
   });
+  it('for enumDate should get various formats', () => {
+    var result = [
+      VUtilities.enumDate('August 11, 2015'),
+      VUtilities.enumDate('August 11, 2015 21:51:09 UTC'),
+      VUtilities.enumDate('Tue August 11, 2015 21:51:09 UTC'),
+      VUtilities.enumDate('Tuesday August 11, 2015 21:51:09 UTC'),
+      VUtilities.enumDate('Tuesday, August 11, 2015 21:51:09 UTC'),
+      VUtilities.enumDate('Tues, August 11, 2015 21:51:09 UTC'),
+      VUtilities.enumDate('Tue Aug 11 2015 21:51:09'),
+      VUtilities.enumDate('Tue Aug 11 2015 21:51:09 GMT+0000'),
+    ];
+    var exp = [
+      1439251200000,
+      1439329869000,
+      1439329869000,
+      1439329869000,
+      1439329869000,
+      1439329869000,
+      1439329869000,
+      1439329869000,
+    ];
+    expect(result.toString()).to.equal(exp.toString());
+  });
   it('should return periodsToSortedStamps for various', () => {
     var result = VUtilities.periodsToSortedStamps([
       'August 11, 2015 21:51:09',

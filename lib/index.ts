@@ -260,32 +260,37 @@ export class VUtilities {
   public static enumDate(obj?: any): number | null {
     const dataFormatPriority = [
       'YYYY-MM-DD HH:mm:ss Z',
-      'YYYY-MM-DD HH:mm:ss',
-      'YYYY-MM-DD HH:mm Z',
-
+      'dddd MMMM DD, YYYY HH:mm:ss Z',
+      'ddd MMMM DD, YYYY HH:mm:ss Z',
       'MMMM DD, YYYY HH:mm:ss Z',
-      'MMMM DD, YYYY HH:mm:ss',
-      'MMMM DD, YYYY HH:mm Z',
-
       'MMMM DD YYYY HH:mm:ss Z',
-      'MMMM DD YYYY HH:mm:ss',
-      'MMMM DD YYYY HH:mm Z',
-
       'MMMM D, YYYY HH:mm:ss Z',
-      'MMMM D, YYYY HH:mm:ss',
-      'MMMM D, YYYY HH:mm Z',
-
       'MMMM D YYYY HH:mm:ss Z',
-      'MMMM D YYYY HH:mm:ss',
-      'MMMM D YYYY HH:mm Z',
-
       'MMM D, YYYY HH:mm:ss Z',
-      'MMM D, YYYY HH:mm:ss',
-      'MMM D, YYYY HH:mm Z',
-
       'MMM D YYYY HH:mm:ss Z',
+      'ddd MMM D YYYY HH:mm:ss Z',
+
+      'YYYY-MM-DD HH:mm:ss',
+      'MMMM DD, YYYY HH:mm:ss',
+      'dddd MMMM DD, YYYY HH:mm:ss',
+      'ddd MMMM DD, YYYY HH:mm:ss',
+      'MMMM DD YYYY HH:mm:ss',
+      'MMMM D, YYYY HH:mm:ss',
+      'MMMM D YYYY HH:mm:ss',
+      'MMM D, YYYY HH:mm:ss',
       'MMM D YYYY HH:mm:ss',
+      'ddd MMM D YYYY HH:mm:ss',
+
+      'YYYY-MM-DD HH:mm Z',
+      'dddd MMMM DD, YYYY HH:mm Z',
+      'ddd MMMM DD, YYYY HH:mm Z',
+      'MMMM DD, YYYY HH:mm Z',
+      'MMMM DD YYYY HH:mm Z',
+      'MMMM D, YYYY HH:mm Z',
+      'MMMM D YYYY HH:mm Z',
+      'MMM D, YYYY HH:mm Z',
       'MMM D YYYY HH:mm Z',
+      'ddd MMM D YYYY HH:mm Z',
 
       'LLLL',
       'LLL',
