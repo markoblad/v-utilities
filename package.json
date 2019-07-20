@@ -41,8 +41,8 @@
   },
   "dependencies": {
     "hoek": "^5.0.3",
-    "lodash": "^4.17.10",
-    "mathjs": "^4.2.2",
-    "moment": "^2.22.1"
+    "lodash": "^4.17.15",
+    "mathjs": "^6.0.3",
+    "moment": "^2.24.0"
   }
 }

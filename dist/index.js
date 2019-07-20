@@ -240,6 +240,49 @@ var VUtilities = /** @class */ (function () {
     */
     // returns timestamp in milliseconds
     VUtilities.enumDate = function (obj) {
+        var dataFormatPriority = [
+            'YYYY-MM-DD HH:mm:ss Z',
+            'YYYY-MM-DD HH:mm:ss',
+            'YYYY-MM-DD HH:mm Z',
+            'MMMM DD, YYYY HH:mm:ss Z',
+            'MMMM DD, YYYY HH:mm:ss',
+            'MMMM DD, YYYY HH:mm Z',
+            'MMMM DD YYYY HH:mm:ss Z',
+            'MMMM DD YYYY HH:mm:ss',
+            'MMMM DD YYYY HH:mm Z',
+            'MMMM D, YYYY HH:mm:ss Z',
+            'MMMM D, YYYY HH:mm:ss',
+            'MMMM D, YYYY HH:mm Z',
+            'MMMM D YYYY HH:mm:ss Z',
+            'MMMM D YYYY HH:mm:ss',
+            'MMMM D YYYY HH:mm Z',
+            'MMM D, YYYY HH:mm:ss Z',
+            'MMM D, YYYY HH:mm:ss',
+            'MMM D, YYYY HH:mm Z',
+            'MMM D YYYY HH:mm:ss Z',
+            'MMM D YYYY HH:mm:ss',
+            'MMM D YYYY HH:mm Z',
+            'LLLL',
+            'LLL',
+            'LL',
+            'L',
+            'YYYY-MM-DD',
+            'MM-DD-YYYY',
+            'DD-MM-YYYY',
+            'YYYY-M-D',
+            'M-D-YYYY',
+            'D-M-YYYY',
+            'MMMM DD, YYYY',
+            'MMMM D, YYYY',
+            'MMM D, YYYY',
+            'MMMM DD YYYY',
+            'MMMM D YYYY',
+            'MMM D YYYY',
+            'MM-DD-YY',
+            'DD-MM-YY',
+            'M-D-YY',
+            'D-M-YY',
+        ];
         if (VUtilities.isBlank(obj))
             return null;
         if (typeof (obj) === 'number') {
@@ -253,16 +296,29 @@ var VUtilities = /** @class */ (function () {
             // let dateObj = Date.parse(obj);
             // let offset = new Date().getTimezoneOffset()*60000;
             // return new Date(dateObj).getTime() + offset
-            return parseInt(moment.utc(VUtilities.isNumeric(obj) ? parseFloat(obj) : obj).format('x'), 10);
+            if (VUtilities.isNumeric(obj)) {
+                return parseInt(moment.utc(parseFloat(obj)).format('x'), 10);
+            }
+            else {
+                return parseInt(moment.utc(obj, dataFormatPriority).format('x'), 10);
+            }
+        }
+        console.log('typeof obj', typeof obj);
+        if (obj instanceof moment) {
+            return (obj).utc().format('x');
         }
         // return Date.parse(obj)
         return parseInt(moment.utc(obj).format('x'), 10);
     };
     VUtilities.newUTCDateTimeStamp = function () {
-        return VUtilities.enumDate(new Date());
+        // return VUtilities.enumDate(new Date()) as number;
+        return VUtilities.enumDate(moment());
     };
     VUtilities.convertDateToStartOfDayStamp = function (date) {
-        return VUtilities.enumDate(moment.utc(date).startOf('day'));
+        // return VUtilities.enumDate(moment.utc(date).startOf('day'));
+        if (date == null)
+            return date;
+        return VUtilities.enumDate(moment.utc(VUtilities.enumDate(date) || 0).startOf('day'));
     };
     VUtilities.periodsToSortedStamps = function (periods) {
         if (periods === void 0) { periods = []; }

@@ -731,7 +731,8 @@ describe('VUtilities functions test', () => {
   });
   it('for enumDate should get NaN given a date wrapped in an array', () => {
     var result = VUtilities.enumDate(['August 11, 2015 21:51:09']);
-    expect(result.toString()).to.equal(NaN.toString());
+    // expect(result.toString()).to.equal(NaN.toString());
+    expect(result).to.equal(1439329869000);
   });
   it('for newUTCDateTimeStamp should get unix UTC timestamp', () => {
     var result = VUtilities.newUTCDateTimeStamp();
