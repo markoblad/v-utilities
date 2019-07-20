@@ -550,11 +550,11 @@ describe('VUtilities functions test', () => {
   it('should return bigArraySum for various', () => {
     var result = [
       VUtilities.bigArraySum(null),
-      mathjs.typeof(VUtilities.bigArraySum(null)),
+      mathjs.typeOf(VUtilities.bigArraySum(null)),
       VUtilities.bigArraySum([null, undefined, 0, '0', 1, '1', {}, {0:null}, [], [1], true, false, '3.0001%', '$1', 0.1, '0.01']),
       VUtilities.bigArraySum([null, undefined, 0, '0', 1, '1', {}, {0:null}, [], [1], true, false, NaN, '$1', 0.1, '0.01']),
       VUtilities.bigArraySum([null, undefined, 0, '0', 1, '1', {}, {0:null}, [], [1], true, false, NaN, Infinity, 0.1, '0.1']),
-      mathjs.typeof(VUtilities.bigArraySum([null, undefined, 0, '0', 1, '1', {}, {0:null}, [], [1], true, false, NaN, Infinity, 0.1, '0.1'])),
+      mathjs.typeOf(VUtilities.bigArraySum([null, undefined, 0, '0', 1, '1', {}, {0:null}, [], [1], true, false, NaN, Infinity, 0.1, '0.1'])),
     ];
     var expectation = [
       0,

@@ -62,7 +62,7 @@ var VUtilities = /** @class */ (function () {
         return !VUtilities.isObject(value) && !VUtilities.isArray(value) && !isNaN(parseFloat(value)) && isFinite(value);
     };
     VUtilities.isBigNumber = function (value) {
-        return mathjs.typeof(value) === 'BigNumber';
+        return mathjs.typeOf(value) === 'BigNumber';
     };
     VUtilities.isTrue = function (value) {
         if (value === undefined || value === null) {
@@ -108,7 +108,7 @@ var VUtilities = /** @class */ (function () {
     VUtilities.bigArraySum = function (value) {
         if (value && VUtilities.isArray(value)) {
             return _.reduce(value, function (memo, num) {
-                var numType = mathjs.typeof(num);
+                var numType = mathjs.typeOf(num);
                 return ((num &&
                     (numType === 'BigNumber' || numType === 'string' || numType === 'number') &&
                     (isFinite(num) || num.toString() === 'Infinity')) ?
@@ -347,15 +347,15 @@ var VUtilities = /** @class */ (function () {
     };
     VUtilities.parseBigOrZero = function (value) {
         value = value || 0.0;
-        return VUtilities.isBigNumber(value) ?
-            value :
-            mathjs.bignumber((VUtilities.isNumeric(value) ? value : 0.0));
+        if (VUtilities.isBigNumber(value))
+            return value;
+        return mathjs.bignumber((VUtilities.isNumeric(value) ? value : 0.0));
     };
     VUtilities.parseBigOrOne = function (value) {
         value = value === 0.0 ? value : (value || '');
-        return VUtilities.isBigNumber(value) ?
-            value :
-            mathjs.bignumber((VUtilities.isNumeric(value) ? value : 1.0));
+        if (VUtilities.isBigNumber(value))
+            return value;
+        return mathjs.bignumber((VUtilities.isNumeric(value) ? value : 1.0));
     };
     return VUtilities;
 }());

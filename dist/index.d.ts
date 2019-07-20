@@ -1,4 +1,5 @@
 /// <reference types="mathjs" />
+import * as mathjs from 'mathjs';
 export declare class VUtilities {
     static makeString(value?: any): string;
     static coerceToString(value: any): string;
