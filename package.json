@@ -29,7 +29,7 @@
   "homepage": "https://github.com/markoblad/v-utilities#readme",
   "devDependencies": {
     "@types/lodash": "^4.14.136",
-    "@types/mathjs": "^6.0.0",
+    "@types/mathjs": "^6.0.1",
     "@types/moment": "^2.13.0",
     "chai": "^4.1.2",
     "coveralls": "^3.0.1",
@@ -37,11 +37,12 @@
     "mocha": "^4.1.0",
     "typescript": "^2.8.3",
     "uglifyjs": "^2.4.11",
-    "v-tools": "^1.1.0"
+    "v-tools": "^1.1.1"
   },
   "dependencies": {
     "lodash": "^4.17.15",
-    "mathjs": "^6.0.3",
-    "moment": "^2.24.0"
+    "mathjs": "^6.0.4",
+    "moment": "^2.24.0",
+    "v-number-to-words": "^1.0.17"
   }
 }

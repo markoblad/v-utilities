@@ -302,6 +302,11 @@ describe('VUtilities functions test', () => {
       VUtilities.isNumeric(false),
       VUtilities.isNumeric(NaN),
       VUtilities.isNumeric(Infinity),
+      VUtilities.isNumeric(mathjs.bignumber(0.0)),
+      VUtilities.isNumeric(mathjs.bignumber(1.1)),
+      VUtilities.isNumeric(mathjs.number(0.0)),
+      VUtilities.isNumeric(mathjs.number(1.1)),
+      VUtilities.isNumeric(mathjs.bignumber(mathjs.bignumber(mathjs.number(mathjs.number(1.1))))),
     ];
     var expectation = [
       false,
@@ -317,6 +322,11 @@ describe('VUtilities functions test', () => {
       false,
       false,
       false,
+      true,
+      true,
+      true,
+      true,
+      true,
     ];
     expect(result.join('')).to.equal(expectation.join(''));
   });
@@ -555,6 +565,25 @@ describe('VUtilities functions test', () => {
       VUtilities.bigArraySum([null, undefined, 0, '0', 1, '1', {}, {0:null}, [], [1], true, false, NaN, '$1', 0.1, '0.01']),
       VUtilities.bigArraySum([null, undefined, 0, '0', 1, '1', {}, {0:null}, [], [1], true, false, NaN, Infinity, 0.1, '0.1']),
       mathjs.typeOf(VUtilities.bigArraySum([null, undefined, 0, '0', 1, '1', {}, {0:null}, [], [1], true, false, NaN, Infinity, 0.1, '0.1'])),
+      VUtilities.bigArraySum([mathjs.bignumber(1.0), mathjs.bignumber(null), mathjs.bignumber(2.0),
+        mathjs.number(null), mathjs.number(3.0), mathjs.number(4.0),
+        mathjs.pow(10, 2), mathjs.pow(10, 3),
+        mathjs.pow(mathjs.bignumber(10), mathjs.bignumber(2)), mathjs.pow(mathjs.number(10), mathjs.number(3)),
+        mathjs.pow(mathjs.bignumber(10), mathjs.number(2)), mathjs.pow(mathjs.number(10), mathjs.bignumber(3)),
+        mathjs.pow(10, mathjs.number(2)), mathjs.pow(mathjs.number(10), 3),
+        mathjs.pow(10, mathjs.bignumber(2)), mathjs.pow(mathjs.bignumber(10), 3),
+        mathjs.number(mathjs.pow(10, 2)), mathjs.bignumber(mathjs.pow(10, 3))
+      ]),
+      VUtilities.bigArraySum([
+        mathjs.bignumber(1),
+        mathjs.bignumber(mathjs.bignumber(2)),
+        0.4,
+        4,
+        mathjs.bignumber(mathjs.bignumber(mathjs.bignumber(10))),
+        mathjs.bignumber(mathjs.bignumber(mathjs.bignumber('100'))),
+        mathjs.bignumber(mathjs.bignumber(mathjs.bignumber('200.0000000000001'))),
+        mathjs.bignumber(mathjs.bignumber(mathjs.bignumber('3000.0000000000000000000000001'))),
+      ]),
     ];
     var expectation = [
       0,
@@ -563,6 +592,8 @@ describe('VUtilities functions test', () => {
       2.11,
       Infinity,
       'BigNumber',
+      6610,
+      '3317.4000000000001000000000001',
     ];
     expect(result.join('')).to.equal(expectation.join(''));
   });
@@ -763,6 +794,10 @@ describe('VUtilities functions test', () => {
       VUtilities.enumDate('Tues, August 11, 2015 21:51:09 UTC'),
       VUtilities.enumDate('Tue Aug 11 2015 21:51:09'),
       VUtilities.enumDate('Tue Aug 11 2015 21:51:09 GMT+0000'),
+      VUtilities.enumDate('2016-09-30T19:31:55.637-04:00'),
+      VUtilities.enumDate('20190720'),
+      VUtilities.enumDate('20190230'),
+      VUtilities.enumDate('20191301'),
     ];
     var exp = [
       1439251200000,
@@ -773,6 +808,10 @@ describe('VUtilities functions test', () => {
       1439329869000,
       1439329869000,
       1439329869000,
+      1475278315637,
+      1563580800000,
+      '20190230',
+      '20191301',
     ];
     expect(result.toString()).to.equal(exp.toString());
   });
@@ -923,10 +962,52 @@ describe('VUtilities functions test', () => {
       VUtilities.parseBigOrZero(mathjs.bignumber(100.001)),
       VUtilities.parseBigOrZero(mathjs.bignumber('00100.001')),
       VUtilities.parseBigOrZero(mathjs.bignumber('00100.001')),
+      VUtilities.parseBigOrZero(mathjs.number(null)),
+      VUtilities.parseBigOrZero(mathjs.number('0')),
+      VUtilities.parseBigOrZero(mathjs.number('010')),
+      VUtilities.parseBigOrZero(mathjs.number(100)),
+      VUtilities.parseBigOrZero(mathjs.number(100.001)),
+      VUtilities.parseBigOrZero(mathjs.number('00100.001')),
+      VUtilities.parseBigOrZero(mathjs.number('00100.001')),
+      VUtilities.parseBigOrZero(mathjs.bignumber(mathjs.number(null))),
+      VUtilities.parseBigOrZero(mathjs.bignumber(mathjs.number('0'))),
+      VUtilities.parseBigOrZero(mathjs.bignumber(mathjs.number('010'))),
+      VUtilities.parseBigOrZero(mathjs.bignumber(mathjs.number(100))),
+      VUtilities.parseBigOrZero(mathjs.bignumber(mathjs.number(100.001))),
+      VUtilities.parseBigOrZero(mathjs.bignumber(mathjs.number('00100.001'))),
+      VUtilities.parseBigOrZero(mathjs.bignumber(mathjs.number('00100.001'))),
+      VUtilities.parseBigOrZero(mathjs.number(mathjs.bignumber(null))),
+      VUtilities.parseBigOrZero(mathjs.number(mathjs.bignumber('0'))),
+      VUtilities.parseBigOrZero(mathjs.number(mathjs.bignumber('010'))),
+      VUtilities.parseBigOrZero(mathjs.number(mathjs.bignumber(100))),
+      VUtilities.parseBigOrZero(mathjs.number(mathjs.bignumber(100.001))),
+      VUtilities.parseBigOrZero(mathjs.number(mathjs.bignumber('00100.001'))),
+      VUtilities.parseBigOrZero(mathjs.number(mathjs.bignumber('00100.001'))),
     ];
     var expectation = [
       0.0,
       0.0,
+      0.0,
+      0.0,
+      10.0,
+      100.0,
+      100.001,
+      100.001,
+      100.001,
+      0.0,
+      0.0,
+      10.0,
+      100.0,
+      100.001,
+      100.001,
+      100.001,
+      0.0,
+      0.0,
+      10.0,
+      100.0,
+      100.001,
+      100.001,
+      100.001,
       0.0,
       0.0,
       10.0,

@@ -241,16 +241,30 @@ var VUtilities = /** @class */ (function () {
     // returns timestamp in milliseconds
     VUtilities.enumDate = function (obj) {
         var dataFormatPriority = [
+            // '2016-09-30T19:31:55.637-04:00'
+            'YYYY-MM-DDTHH:mm:ss.SSS ZZ',
+            'YYYY-MM-DDTHH:mm:ss.SSS Z',
+            'YYYY-MM-DDTHH:mm:ss.SSS',
+            'YYYY-MM-DD HH:mm:ss ZZ',
             'YYYY-MM-DD HH:mm:ss Z',
+            'dddd MMMM DD, YYYY HH:mm:ss ZZ',
             'dddd MMMM DD, YYYY HH:mm:ss Z',
+            'ddd MMMM DD, YYYY HH:mm:ss ZZ',
             'ddd MMMM DD, YYYY HH:mm:ss Z',
+            'MMMM DD, YYYY HH:mm:ss ZZ',
             'MMMM DD, YYYY HH:mm:ss Z',
+            'MMMM DD YYYY HH:mm:ss ZZ',
             'MMMM DD YYYY HH:mm:ss Z',
+            'MMMM D, YYYY HH:mm:ss ZZ',
             'MMMM D, YYYY HH:mm:ss Z',
+            'MMMM D YYYY HH:mm:ss ZZ',
             'MMMM D YYYY HH:mm:ss Z',
             'MMM D, YYYY HH:mm:ss Z',
+            'MMM D, YYYY HH:mm:ss ZZ',
             'MMM D YYYY HH:mm:ss Z',
+            'MMM D YYYY HH:mm:ss ZZ',
             'ddd MMM D YYYY HH:mm:ss Z',
+            'ddd MMM D YYYY HH:mm:ss ZZ',
             'YYYY-MM-DD HH:mm:ss',
             'MMMM DD, YYYY HH:mm:ss',
             'dddd MMMM DD, YYYY HH:mm:ss',
@@ -261,15 +275,25 @@ var VUtilities = /** @class */ (function () {
             'MMM D, YYYY HH:mm:ss',
             'MMM D YYYY HH:mm:ss',
             'ddd MMM D YYYY HH:mm:ss',
+            'YYYY-MM-DD HH:mm ZZ',
             'YYYY-MM-DD HH:mm Z',
+            'dddd MMMM DD, YYYY HH:mm ZZ',
             'dddd MMMM DD, YYYY HH:mm Z',
+            'ddd MMMM DD, YYYY HH:mm ZZ',
             'ddd MMMM DD, YYYY HH:mm Z',
+            'MMMM DD, YYYY HH:mm ZZ',
             'MMMM DD, YYYY HH:mm Z',
+            'MMMM DD YYYY HH:mm ZZ',
             'MMMM DD YYYY HH:mm Z',
+            'MMMM D, YYYY HH:mm ZZ',
             'MMMM D, YYYY HH:mm Z',
+            'MMMM D YYYY HH:mm ZZ',
             'MMMM D YYYY HH:mm Z',
+            'MMM D, YYYY HH:mm ZZ',
             'MMM D, YYYY HH:mm Z',
+            'MMM D YYYY HH:mm ZZ',
             'MMM D YYYY HH:mm Z',
+            'ddd MMM D YYYY HH:mm ZZ',
             'ddd MMM D YYYY HH:mm Z',
             'LLLL',
             'LLL',
@@ -300,6 +324,11 @@ var VUtilities = /** @class */ (function () {
             // } else {
             return obj;
             // }
+        }
+        if (typeof (obj) === 'string' &&
+            (/^[12]\d{3}(?:0\d)|(?:1[012])(?:[012]\d)|(?:3[01])$/g).test(obj)
+            && !(/\d\d\d\d023\d/g).test(obj)) {
+            return parseInt(moment.utc(obj, 'YYYYMMDD').format('x'), 10);
         }
         if (typeof (obj) === 'string' || typeof (obj) === 'object') {
             // let dateObj = Date.parse(obj);
