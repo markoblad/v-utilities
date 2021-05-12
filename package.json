@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.15",
-    "mathjs": "6.2.5",
+    "mathjs": "7.5.1",
     "moment": "^2.24.0",
     "v-number-to-words": "^1.0.19"
   }
